@@ -91,3 +91,8 @@ tbody {
   background-color: rgb(255, 145, 0);
   font-weight: 900;
 }
+
+.tableMsg{
+  font-family: sans-serif;
+  color: red;
+}
