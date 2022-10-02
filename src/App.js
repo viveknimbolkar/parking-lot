@@ -1,6 +1,39 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+
+  
+  const [vehicleNumber, setVehicleNumber] = useState("");
+  const [driverName, setDriverName] = useState("");
+  const [totalVehicle, setTotalVehicle] = useState(0);
+
+  useEffect(()=>{
+    setTotalVehicle(localStorage.length);
+  });
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(vehicleNumber);
+    console.log(driverName);
+
+    var  time = new Date();
+    var currentTime = time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    
+    var carDetails = {
+      driverName:driverName,
+      checkIn: currentTime,
+      checkOut:null
+    };
+    console.log(carDetails);
+
+    // key = vehicleNumber , value = {drivername, checkin, checkout}
+    localStorage.setItem(vehicleNumber,JSON.stringify(carDetails));
+
+    setTotalVehicle(localStorage.length)
+
+  }
+
   return (
     <>
       <header>
@@ -12,19 +45,19 @@ function App() {
         <div className="vehicalForm">
           <label>Vehicle Number</label>
           <br></br>
-          <input type="text"></input>
+          <input onChange={(e)=>setVehicleNumber(e.target.value)} type="text"></input>
           <br></br>
           <br></br>
           <label>Driver Name</label>
           <br></br>
-          <input type="text"></input>
+          <input onChange={(e)=>setDriverName(e.target.value)} type="text"></input>
           <br></br> <br></br>
-          <input type="submit" className="saveBtn"></input>
+          <input onClick={handleSubmit} type="submit" className="saveBtn"></input>
         </div>
 
         <div className="vehicle-section">
           <h4>Total Vehicles</h4>
-          <p>456</p>
+          <p>{totalVehicle}</p>
         </div>
       </section>
 
