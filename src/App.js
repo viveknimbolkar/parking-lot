@@ -34,7 +34,7 @@ function App() {
     // key = vehicleNumber , value = {drivername, checkin, checkout}
     localStorage.setItem(vehicleNumber, JSON.stringify(carDetails));
 
-    setTotalVehicle(localStorage.length);
+    setTotalVehicle(localStorage.length-1);
   }
 
   // unparked vehicle
